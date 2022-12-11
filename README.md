@@ -10,4 +10,7 @@ Is a new AI system that can create realistic images and art from a description i
 
 ## OPENAI_API_KEY
 
-got to https://beta.openai.com/account/api-keys  and generate you own API key
+got to https://beta.openai.com/account/api-keys  and generate your own API key and create .env with the following structure:
+
+PORT=5000
+OPENAI_API_KEY='<your api key>'
