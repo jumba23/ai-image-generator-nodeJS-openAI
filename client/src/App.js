@@ -1,10 +1,51 @@
+import { useState } from "react";
+
 function App() {
+  const [imageData, setImageData] = useState();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let prompt = e.target.prompt.value;
+    let size = e.target.size.value;
+    generateImage(prompt, size);
+  };
+
+  const generateImage = async (prompt, size) => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/openai/generateimage",
+        {
+          method: "POST",
+          headers: {
+            // cors: "no-cors",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt,
+            size,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("That image could not be generated");
+      }
+
+      const data = await response.json();
+      setImageData(data.data);
+      console.log(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex flex-col w-2/3 h-screen pt-5 mx-auto bg-red-400 rounded-xl">
       <h1 className="pb-3 text-3xl italic font-bold text-center">
         Try DALL·E 2, a new AI system!
       </h1>
-      <form className="flex flex-col items-center w-3/4 px-8 py-5 m-auto border-2 border-orange-900 shadow-xl rounded-xl bg-sky-500">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-center w-3/4 px-8 py-5 m-auto border-2 border-orange-900 shadow-xl rounded-xl bg-sky-500"
+      >
         <input
           type="text"
           name="prompt"
@@ -28,7 +69,9 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="flex items-center justify-center h-2/3"></div>
+      <div className="flex items-center justify-center h-2/3">
+        <img src={imageData} alt="" />
+      </div>
     </div>
   );
 }
