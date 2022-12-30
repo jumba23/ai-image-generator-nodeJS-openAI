@@ -2,8 +2,10 @@ import { useState } from "react";
 
 function App() {
   const [imageData, setImageData] = useState();
+  const [isSpinner, setIsSpinner] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSpinner(true);
     let prompt = e.target.prompt.value;
     let size = e.target.size.value;
     generateImage(prompt, size);
@@ -32,13 +34,13 @@ function App() {
 
       const data = await response.json();
       setImageData(data.data);
-      console.log(data.data);
+      setIsSpinner(false);
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="flex flex-col w-2/3 h-screen pt-5 mx-auto bg-red-400 rounded-xl">
+    <div className="flex flex-col w-2/3 h-screen pt-5 mx-auto bg-red-400 rounded-xl ">
       <h1 className="pb-3 text-3xl italic font-bold text-center">
         Try DALL·E 2, a new AI system!
       </h1>
@@ -69,9 +71,22 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="flex items-center justify-center h-2/3">
-        <img src={imageData} alt="" />
-      </div>
+      {!isSpinner ? (
+        <div className="flex items-center justify-center h-2/3 ">
+          <img
+            src={imageData}
+            alt="ai generated content"
+            className="object-scale-down h-full"
+          />
+        </div>
+      ) : (
+        <div class="flex justify-center items-center">
+          <div
+            class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+            role="status"
+          ></div>
+        </div>
+      )}
     </div>
   );
 }
