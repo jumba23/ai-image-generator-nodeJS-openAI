@@ -56,7 +56,7 @@ function App() {
           type="text"
           name="prompt"
           id="prompt"
-          className="w-full py-1 pl-1 mb-1 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+          className="w-full px-1 py-1 mb-1 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
           placeholder="Type image description"
         />
         <div className="flex justify-between w-full ">
