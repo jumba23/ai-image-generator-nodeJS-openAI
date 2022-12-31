@@ -45,21 +45,21 @@ function App() {
   };
   return (
     <div className="flex flex-col w-2/3 h-screen pt-3 mx-auto bg-red-400 rounded-xl ">
-      <h1 className="text-3xl italic font-bold text-center ">
+      <h1 className="text-2xl italic font-bold text-center">
         Try DALL·E 2, a new AI system!
       </h1>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-center w-3/4 px-8 py-5 m-auto border-2 border-orange-900 shadow-xl rounded-xl bg-sky-500"
+        className="flex flex-col items-center w-3/4 px-8 py-3 mx-auto my-2 border-2 border-orange-900 shadow-xl rounded-xl bg-sky-500"
       >
         <input
           type="text"
           name="prompt"
           id="prompt"
-          className="block w-full py-2 pr-3 mb-8 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
+          className="w-full py-1 pl-1 mb-1 bg-white border rounded-md shadow-sm placeholder:italic placeholder:text-slate-400 border-slate-300 pl-9 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
           placeholder="Type image description"
         />
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full ">
           <div className="flex flex-col gap-1">
             <h3 className="py-1">Select image size</h3>
             <select name="size" id="size" className="border rounded-md">
@@ -96,8 +96,8 @@ function App() {
           )}
         </div>
       </form>
-      <div className="flex items-center justify-center h-2/3 ">
-        {!isLoading ? (
+      <div className="flex items-center justify-center h-3/4">
+        {imageData ? (
           <img
             src={imageData}
             alt="ai generated content"
@@ -110,11 +110,3 @@ function App() {
 }
 
 export default App;
-
-// <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm ">
-//   <div class="flex items-center justify-center">
-//     <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24">
-//       Loading ...
-//     </svg>
-//   </div>
-// </div>
